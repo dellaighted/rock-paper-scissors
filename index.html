@@ -4,97 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
+    <script src="rps.js" defer></script>
+    <style>
+        *{
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 20px;
+        }
+        #Rock, #Paper, #Scissors{
+            font-size: 20px;
+            padding: 10px 40px;
+        }
+      </style>
 </head>
 
 <body>
-    <script>
-        let humanScore = 0;
-        let computerScore = 0;
+    <h1 style="color: darkcyan; font-size: 40px">Welcome to a game of Rock, Paper, Scissors!</h1>
 
-        function getHumanChoice(){
-            let choice = prompt("Pick one: Rock, Paper, or Scissors");
-            let str = choice.toLowerCase();
-            if(str == "rock" || str == "paper" || str == "scissors"){
-                flag = 1;
-                str = str.replace(str.charAt(0), str.charAt(0).toUpperCase());
-                return str;
-            }
-            else{
-                return "unknown";
-            }
-        }
+    <button id="Rock">Rock</button>
+    <button id="Paper">Paper</button>
+    <button id="Scissors">Scissors</button>
 
-        function getComputerChoice(){
-            let x = Math.floor(Math.random() * 11); //returns a random integer from 0-10
-            if (x <= 3){
-                return "Rock";
-            }
-            if (x >= 4 && x <= 7){
-                return "Paper";
-            }
-            return "Scissors";
-        }
-
-        function playRound(humanChoice, computerChoice){
-            //when human wins
-            if (humanChoice == "Rock" && computerChoice == "Scissors"){
-                humanScore++;
-            }
-            if (humanChoice == "Paper" && computerChoice == "Rock"){
-                humanScore++;
-            }
-            if (humanChoice == "Scissors" && computerChoice == "Paper"){
-                humanScore++;
-            }
-            //when computer wins
-            if (computerChoice == "Rock" && humanChoice == "Scissors"){
-                computerScore++;
-            }
-            if (computerChoice == "Paper" && humanChoice == "Rock"){
-                computerScore++;
-            }
-            if (computerChoice == "Scissors" && humanChoice == "Paper"){
-                computerScore++;
-            }
-            //when no one wins
-            if (computerChoice == "Rock" && humanChoice == "Rock"){
-                computerScore += 0;
-                humanScore += 0;
-            }
-            if (computerChoice == "Paper" && humanChoice == "Paper"){
-                computerScore += 0;
-                humanScore += 0;
-            }
-            if (computerChoice == "Scissors" && humanChoice == "Scissors"){
-                computerScore += 0;
-                humanScore += 0;
-            }
-        }
-
-        function playGame(){
-            let rounds = 1;
-            while (rounds <= 5){
-                const humanSelection = getHumanChoice();
-                if (humanSelection == "unknown"){
-                    rounds += 0;
-                }else{
-                    const computerSelection = getComputerChoice();
-                    console.log("You played: " + humanSelection + " --- Computer played: " + computerSelection);
-                    playRound(humanSelection, computerSelection);
-                    rounds++;
-                }
-            }
-            if (humanScore > computerScore){
-                console.log("Congrats! You won!");
-            }else{
-                console.log("You lost! Better luck next time!");
-            }
-            console.log("Final score: You: " + humanScore + " - Computer: " + computerScore);
-        }
-
-        playGame();
-
-    </script>
+    <div id="container"></div>
 </body>
 
 </html>
